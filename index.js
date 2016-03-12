@@ -11,7 +11,7 @@ module.exports = function(file, options, callback) {
 	fpcalc(file, options.fpcalc || {}, function(err, result) {
 		if (err) return callback(err);
 		// Return track info
-		getinfo(result, options, callback);
+		module.exports.getinfo(result, options, callback);
 	});
 };
 // -- Get track information given fingerprint
@@ -21,7 +21,7 @@ var querystring = require("querystring"),
 
 var META_DEFAULT = "recordings releases releasegroups tracks usermeta sources";
 
-function getinfo(fp, options, callback) {
+module.exports.getinfo = function (fp, options, callback) {
 	// Create request to http service
 	var req = request({
 		format: "json",
